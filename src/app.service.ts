@@ -19,6 +19,7 @@ export class AppService {
     console.log(gotten_location.data);
     const loaded_data = (await this.get_location()).data;
     const location: string = loaded_data.location.region;
+    console.log(location);
     const temp = (await this.get_location_temperature(location)).data.main;
     const cel_temp = convert_temperature_to_celsius_from_kelvin(+temp.temp);
     return {
@@ -29,8 +30,8 @@ export class AppService {
   }
 
   private get_location = () => {
-    const data = this.httpService.get(geoUrl + process.env.geo_api_key);
-    return lastValueFrom(data);
+    const data = axios.get(geoUrl + process.env.geo_api_key);
+    return data;
   };
 
   private get_location_temperature = (location: string) => {
