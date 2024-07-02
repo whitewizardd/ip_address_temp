@@ -17,13 +17,11 @@ export class AppService {
       ip_info_url + process.env.ipinfo_key,
     );
     console.log(gotten_location.data);
-    const loaded_data = (await this.get_location()).data;
-    const location: string = loaded_data.location.region;
-    console.log(location);
+    const location: string = gotten_location.data.city;
     const temp = (await this.get_location_temperature(location)).data.main;
     const cel_temp = convert_temperature_to_celsius_from_kelvin(+temp.temp);
     return {
-      client_ip: loaded_data.ip,
+      client_ip: gotten_location.data.ip,
       location: location,
       greeting: generate_greeting(visitor_name, cel_temp, location),
     };
