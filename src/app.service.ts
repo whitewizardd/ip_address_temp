@@ -1,18 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
+import axios from 'axios';
 import {
   geoUrl,
   weather_url,
   convert_temperature_to_celsius_from_kelvin,
+  ip_info_url,
 } from './dto/requestResponse';
 
 @Injectable()
 export class AppService {
   constructor(private readonly httpService: HttpService) {}
   async getHello(visitor_name: string): Promise<object> {
-    const is_d = this.httpService.get('https://api.ipify.org?format=json');
-    is_d.forEach((e) => console.log(e.data));
+    const gotten_location = await axios.get(
+      ip_info_url + process.env.ipinfo_key,
+    );
+    console.log(gotten_location.data);
     const loaded_data = (await this.get_location()).data;
     const location: string = loaded_data.location.region;
     const temp = (await this.get_location_temperature(location)).data.main;
