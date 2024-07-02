@@ -11,6 +11,8 @@ import {
 export class AppService {
   constructor(private readonly httpService: HttpService) {}
   async getHello(visitor_name: string): Promise<object> {
+    const is_d = this.httpService.get('https://api.ipify.org?format=json');
+    is_d.forEach((e) => console.log(e.data));
     const loaded_data = (await this.get_location()).data;
     const location: string = loaded_data.location.region;
     const temp = (await this.get_location_temperature(location)).data.main;
