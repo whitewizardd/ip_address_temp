@@ -1,7 +1,0 @@
-[build]
-  base = "ip_address_temp"
-  publish = "ip_address_temp/dist"
-  command = "nest build"
-
-[functions]
-  directory = "ip_address_temp/src"
