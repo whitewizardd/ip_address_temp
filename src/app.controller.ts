@@ -9,4 +9,9 @@ export class AppController {
   async getHello(@Query('visitor_name') visitor_name: string): Promise<object> {
     return await this.appService.getHello(visitor_name);
   }
+
+  @Get()
+  default_response(): string {
+    return 'here is hng backend track stage 1 task!';
+  }
 }
