@@ -7,4 +7,4 @@ export const ip_info_url = 'https://ipinfo.io/105.112.29.0?token=';
 
 export const convert_temperature_to_celsius_from_kelvin = (
   temp_value: number,
-): string => (temp_value - 273.15).toFixed(2);
+): string => (temp_value - 273.15).toFixed();

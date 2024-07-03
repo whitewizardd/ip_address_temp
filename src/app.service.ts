@@ -3,7 +3,6 @@ import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
 import axios from 'axios';
 import {
-  geoUrl,
   weather_url,
   convert_temperature_to_celsius_from_kelvin,
   ip_info_url,
@@ -26,11 +25,6 @@ export class AppService {
       greeting: generate_greeting(visitor_name, cel_temp, location),
     };
   }
-
-  private get_location = () => {
-    const data = axios.get(geoUrl + process.env.geo_api_key);
-    return data;
-  };
 
   private get_location_temperature = (location: string) => {
     const request_made = this.httpService.get(weather_url(location));
