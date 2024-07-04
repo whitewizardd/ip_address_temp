@@ -16,6 +16,9 @@ export class AppService {
       ip_info_url + process.env.ipinfo_key,
     );
     console.log(gotten_location.data);
+    // console.log(gotten_location.data.loc.substring(0, 6));
+    console.log(gotten_location.data.ip);
+
     const location: string = gotten_location.data.region;
     const temp = (await this.get_location_temperature(location)).data.main;
     const cel_temp = convert_temperature_to_celsius_from_kelvin(+temp.temp);
