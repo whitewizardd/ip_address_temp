@@ -7,7 +7,7 @@ export class AppController {
 
   @Get('api/hello')
   async getHello(@Query('visitor_name') visitor_name: string): Promise<object> {
-    return await this.appService.getHello(visitor_name);
+    return await this.appService.getLocationAndTemperature(visitor_name);
   }
 
   @Get()
